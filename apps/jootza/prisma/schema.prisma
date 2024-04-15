@@ -18,3 +18,39 @@ model User {
   updatedAt DateTime @updatedAt
   username  String   @unique
 }
+
+model Job {
+  companyId       String?
+  createdAt       DateTime                @default(now())
+  description     String?
+  dueDate         DateTime?
+  employmentType  EnumJobEmploymentType?
+  experienceLevel EnumJobExperienceLevel?
+  hiringContact   String?                 @unique
+  id              BigInt                  @id @default(auto()) @map("_id") @db.ObjectId
+  industry        String?
+  keywords        String?
+  location        String?
+  status          EnumJobStatus?
+  title           String?
+  updatedAt       DateTime                @updatedAt
+}
+
+enum EnumJobEmploymentType {
+  FullTime
+  PartTime
+  Contract
+  Temporary
+}
+
+enum EnumJobExperienceLevel {
+  EntryLevel
+  MidLevel
+  SeniorLevel
+}
+
+enum EnumJobStatus {
+  Open
+  Closed
+  OnHold
+}
